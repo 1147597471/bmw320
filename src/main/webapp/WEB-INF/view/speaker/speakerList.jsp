@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="zyc" uri="http://zhiyou100.com/common/" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <html>
@@ -37,7 +38,8 @@
 					right: 2px;
 					top:5px;
 				
-			}		
+			}	
+					
     		
     	
     </style>
@@ -77,52 +79,94 @@
 		</div> 
 		
       </div><!-- /.container-fluid -->
+      	
     </nav>
-  
-  	<div class="body">
+    
+    <div class="body">
 		       	<div class="jumbotron" style="width: 60%;height: 20px;position: relative;top: -18px; border-radius: 10px;">
-		      		<div style="position: relative; top: -50px;left: 40px;"><h2>编辑主讲人-主讲人管理</h2></div>
+		      		<div style="position: relative; top: -50px;left: 40px;"><h2>主讲人列表-主讲人管理</h2></div>
 		    	</div>
   	</div>
-
+  
   	<div class="body" >
 		<div style="width: 60%;">
-			<form class="form-horizontal" action="<c:url value="/admin/speaker/addSpeaker.action"/>" method="post">
-				<div class="form-group">
-				    <label for="inputPassword3" class="col-sm-2 control-label">名字</label>
-				    <div class="col-sm-10">
-				    <input type="text" class="form-control" id="inputPassword3" placeholder="请输入主讲人名字" name="speakerName">
-				    </div>
-			  	</div>
-				
-				<div class="form-group">
-				    <label for="inputPassword3" class="col-sm-2 control-label">职业</label>
-				    <div class="col-sm-10">
-				      <input type="text" class="form-control" id="inputPassword3" placeholder="请输入主讲人职业" name="speakerJob">
-				    </div>
-			  	</div>
+			<a href="<c:url value="/admin/speaker/addSpeaker.action"/>" class="btn btn-primary" >添加主讲人</a>&nbsp;&nbsp;
+			 
+			 <form>	
+			 	<div style="float: right;">
+			 		<input type="submit" class="btn btn-primary" style="float: right; " value="查询"/>
+			 	</div>
 			 	
-			 	<div class="form-group">
-				    <label for="inputPassword3" class="col-sm-2 control-label">头像图片</label>
-				    <div class="col-sm-10">
-				      <input type="text" class="form-control" id="inputPassword3" placeholder="请输入主讲人头像图片地址" name="speakerHeadUrl">
-				    </div>
-			  	</div>
-			  	
-			  	<div class="form-group">
-				    <label for="inputPassword3" class="col-sm-2 control-label">简介</label>
-				    <div class="col-sm-10">
-				      <textarea class="form-control" rows="3" name="speakerDescr"></textarea>
-				    </div>
-			  	</div>
-			 	
-			 	<input type="submit" class="btn btn-primary" value="保存"/>
-			 	<a class="btn btn-default" href="javascript:history.go(-1)">返回列表</a>	
-		 	
+			 	<div class="form-group" style="float: right;">
+						  <input type="text" name="speakerJob" class="form-control" id="exampleInputName2" placeholder="主讲人职位" value="${speakerJob}">
+			    </div>
+			    
+			 	<div class="form-group" style="float: right;">
+						 <input type="text" name="speakerName" class="form-control" id="exampleInputName2" placeholder="主讲人名称" value="${speakerName}">
+			   </div>
+			 
+		 	</form>
 		 </div>
   	</div>
-  	</form>
   	
+  	<div class="body">
+  		<div style="width: 60%;">
+  			<table class="table table-hover">
+  				<thead>
+  					<td width="40px">序号</td>
+  					<td width="100px">名称</td>
+  					<td width="100px">职位</td>
+  					<td>简介</td>
+  					<td width="40px">编辑</td>
+  					<td width="40px">删除</td>
+  				</thead>
+  				<tbody>
+	  				<c:forEach var="list" items="${page.rows}" varStatus="status">
+  						<tr class="success">
+		  					<td>${(page.page-1)*7+status.count}</td>
+		  					<td>${list.speakerName}</td>
+		  					<td>${list.speakerJob }</td>
+		  					<td>${list.speakerDescr }</td>
+		  					<td><a href="<c:url value="/admin/speaker/editSpeaker.action"/>?id=${list.id}" class="glyphicon glyphicon-edit" style="text-decoration: none"></a></td>
+		  					<td>
+		  					
+			  			<a class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#myModal${list.id }" > </a>
+						<!-- Modal -->
+						<div class="modal fade" id="myModal${list.id }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						  <div class="modal-dialog" role="document">
+							 <div class="modal-content">
+								 <div class="modal-header">
+							      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="myModalLabel">确认框</h4>
+							      </div>
+							      <div class="modal-body">
+							                确认删除么
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+							        <a class="btn btn-primary" href="<c:url value="/admin/speaker/deleteSpeaker.action?id=${list.id }" />">确定</a>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+						  					
+	  				    </td>
+ 						</tr>
+ 					</c:forEach>
+ 				</tbody>
+  			</table>
+  			
+  		</div>
+  		
+  	</div>
+  	
+  	<div class="body">
+  		<div style="width: 60%;">
+  			<zyc:page url="${pageContext.request.contextPath}/admin/video/videoList.action"/>
+  		</div>
+  	
+  	</div>
   	
 	</body>
 </html>
+

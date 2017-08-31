@@ -10,9 +10,9 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
    		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title></title>
-		<link href="../css/bootstrap.min.css" rel="stylesheet">
-	 	<script src="../js/jquery-1.12.4.min.js"></script>
-   	 	<script src="../js/bootstrap.min.js"></script>
+		<link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
+	 	<script src="${pageContext.request.contextPath }/js/jquery-1.12.4.min.js"></script>
+   	 	<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
     
     <style type="text/css">
     		
@@ -62,17 +62,17 @@
 		        <!-- Collect the nav links, forms, and other content for toggling -->
 		        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9" style="width: 100%;">
 		          	<ul class="nav navbar-nav">
-			            <li><a class="navbar-brand" href="<c:url value="/video/videoList.action"/>">视频管理</a></li>
-			            <li class="active"><a href="<c:url value="/speaker/speakerList.action"/>">主讲人管理</a></li>
-			            <li><a href="<c:url value="/course/courseList.action"/>">课程管理</a></li>
-			            <li><a href="<c:url value="/video/view.action" />">统计分析</a></li>
+			            <li><a class="navbar-brand" href="<c:url value="/admin/video/videoList.action"/>">视频管理</a></li>
+			            <li class="active"><a href="<c:url value="/admin/speaker/speakerList.action"/>">主讲人管理</a></li>
+			            <li><a href="<c:url value="/admin/course/courseList.action"/>">课程管理</a></li>
+			            <li><a href="<c:url value="/admin/video/view.action" />">统计分析</a></li>
 		          	</ul>
 
 		        </div><!-- /.navbar-collapse -->
 		      </div>  
 		     <div class="small">
 		        	<a style="color: #C0C0C0;text-decoration:none;" href="#">${loginList[0].loginName }</a>
-		        	<a class="glyphicon glyphicon-log-out" style="color: #C0C0C0;text-decoration: none;" href="<c:url value="/index.jsp"/>"></a>
+		        	<a class="glyphicon glyphicon-log-out" style="color: #C0C0C0;text-decoration: none;" href="<c:url value="/admin/index.jsp"/>"></a>
 		     </div> 
 		</div> 
 		
@@ -87,7 +87,7 @@
 
   	<div class="body" >
 		<div style="width: 60%;">
-			<form class="form-horizontal" action="<c:url value="/course/addCourse.action"/>" method="post">
+			<form class="form-horizontal" action="<c:url value="/admin/course/addCourse.action"/>" method="post">
 				<div class="form-group">
 				    <label for="inputPassword3" class="col-sm-2 control-label">所属学科</label>
 				    <div class="col-sm-10">

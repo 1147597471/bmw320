@@ -62,7 +62,7 @@
 		        <!-- Collect the nav links, forms, and other content for toggling -->
 		        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9" style="width: 100%;">
 		          	<ul class="nav navbar-nav">
-			            <li><a class="navbar-brand" href="<c:url value="/admin/video/videoList.action"/>">视频管理</a></li>
+			           <li><a class="navbar-brand" href="<c:url value="/admin/video/videoList.action"/>">视频管理</a></li>
 			            <li class="active"><a href="<c:url value="/admin/speaker/speakerList.action"/>">主讲人管理</a></li>
 			            <li><a href="<c:url value="/admin/course/courseList.action"/>">课程管理</a></li>
 			            <li><a href="<c:url value="/admin/video/view.action" />">统计分析</a></li>
@@ -87,35 +87,35 @@
 
   	<div class="body" >
 		<div style="width: 60%;">
-			<form class="form-horizontal" action="<c:url value="/admin/speaker/addSpeaker.action"/>" method="post">
+			<form class="form-horizontal" action="<c:url value="/admin/speaker/editSpeaker.action"/>" method="post">
 				<div class="form-group">
 				    <label for="inputPassword3" class="col-sm-2 control-label">名字</label>
 				    <div class="col-sm-10">
-				    <input type="text" class="form-control" id="inputPassword3" placeholder="请输入主讲人名字" name="speakerName">
+				    <input type="text" class="form-control" id="inputPassword3" placeholder="请输入主讲人名字" name="speakerName" value="${speaker.speakerName }">
 				    </div>
 			  	</div>
 				
 				<div class="form-group">
 				    <label for="inputPassword3" class="col-sm-2 control-label">职业</label>
 				    <div class="col-sm-10">
-				      <input type="text" class="form-control" id="inputPassword3" placeholder="请输入主讲人职业" name="speakerJob">
+				      <input type="text" class="form-control" id="inputPassword3" placeholder="请输入主讲人职业" name="speakerJob" value="${speaker.speakerJob }">
 				    </div>
 			  	</div>
 			 	
 			 	<div class="form-group">
 				    <label for="inputPassword3" class="col-sm-2 control-label">头像图片</label>
 				    <div class="col-sm-10">
-				      <input type="text" class="form-control" id="inputPassword3" placeholder="请输入主讲人头像图片地址" name="speakerHeadUrl">
+				      <input type="text" class="form-control" id="inputPassword3" placeholder="请输入主讲人头像图片地址" name="speakerHeadUrl" value="${speaker.speakerHeadUrl }">
 				    </div>
 			  	</div>
 			  	
 			  	<div class="form-group">
 				    <label for="inputPassword3" class="col-sm-2 control-label">简介</label>
 				    <div class="col-sm-10">
-				      <textarea class="form-control" rows="3" name="speakerDescr"></textarea>
+				      <textarea class="form-control" rows="3" name="speakerDescr">${speaker.speakerDescr }</textarea>
 				    </div>
 			  	</div>
-			 	
+			 	<input type="hidden" name="id" value="${speaker.id }">
 			 	<input type="submit" class="btn btn-primary" value="保存"/>
 			 	<a class="btn btn-default" href="javascript:history.go(-1)">返回列表</a>	
 		 	

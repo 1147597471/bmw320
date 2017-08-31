@@ -3,10 +3,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html lang="zh-CN">
 <html>
-	<head>
-		<meta charset="UTF-8">
+    <head>
+        <meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
    		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title></title>
@@ -81,48 +80,77 @@
   
   	<div class="body">
 		       	<div class="jumbotron" style="width: 60%;height: 20px;position: relative;top: -18px; border-radius: 10px;">
-		      		<div style="position: relative; top: -50px;left: 40px;"><h2>编辑主讲人-主讲人管理</h2></div>
+		      		<div style="position: relative; top: -50px;left: 40px;"><h2>编辑视频信息-视频管理</h2></div>
 		    	</div>
   	</div>
 
   	<div class="body" >
 		<div style="width: 60%;">
-			<form class="form-horizontal" action="<c:url value="/admin/speaker/addSpeaker.action"/>" method="post">
+			<form class="form-horizontal" action="<c:url value="/admin/video/editVideo.action"/>" method="post">
 				<div class="form-group">
-				    <label for="inputPassword3" class="col-sm-2 control-label">名字</label>
+				    <label for="inputPassword3" class="col-sm-2 control-label">视频标题</label>
 				    <div class="col-sm-10">
-				    <input type="text" class="form-control" id="inputPassword3" placeholder="请输入主讲人名字" name="speakerName">
+				    <input type="text" class="form-control" id="inputPassword3" placeholder="" name="videoTitle" value="${video.videoTitle}">
 				    </div>
 			  	</div>
 				
 				<div class="form-group">
-				    <label for="inputPassword3" class="col-sm-2 control-label">职业</label>
+				    <label for="inputPassword3" class="col-sm-2 control-label">主讲人</label>
 				    <div class="col-sm-10">
-				      <input type="text" class="form-control" id="inputPassword3" placeholder="请输入主讲人职业" name="speakerJob">
+				      	<select class="form-control" name="speakerId">
+								<option value=null>请选择主讲人</option>
+								 <c:forEach var="spList" items="${spList}" varStatus="status">
+									    <option value="${spList.id}"; ${video.speakerId eq spList.id ? "selected":""}>${spList.speakerName}</option>
+								 </c:forEach>
+						</select>
 				    </div>
 			  	</div>
 			 	
 			 	<div class="form-group">
-				    <label for="inputPassword3" class="col-sm-2 control-label">头像图片</label>
+				    <label for="inputPassword3" class="col-sm-2 control-label">所属课程</label>
 				    <div class="col-sm-10">
-				      <input type="text" class="form-control" id="inputPassword3" placeholder="请输入主讲人头像图片地址" name="speakerHeadUrl">
+				       <select class="form-control" name="courseId">
+							<option value=null>请选择课程</option>
+									<c:forEach var="csList" items="${csList}" varStatus="status">
+							    			<option value="${csList.id}"; ${video.courseId eq csList.id ? "selected":""}>${csList.courseName}</option>
+							    	</c:forEach>
+						</select>
 				    </div>
 			  	</div>
 			  	
 			  	<div class="form-group">
-				    <label for="inputPassword3" class="col-sm-2 control-label">简介</label>
+				    <label for="inputPassword3" class="col-sm-2 control-label">视频时长</label>
 				    <div class="col-sm-10">
-				      <textarea class="form-control" rows="3" name="speakerDescr"></textarea>
+				      <input type="text" class="form-control" id="inputPassword3" placeholder="" name="videoLength" value="${video.videoLength}">
+				    </div>
+			  	</div>
+			  	
+			  	<div class="form-group">
+				    <label for="inputPassword3" class="col-sm-2 control-label">封面图片</label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="inputPassword3" placeholder="" name="videoImageUrl" value="${video.videoImageUrl}">
 				    </div>
 			  	</div>
 			 	
-			 	<input type="submit" class="btn btn-primary" value="保存"/>
+			 	<div class="form-group">
+				    <label for="inputPassword3" class="col-sm-2 control-label">视频播放地址</label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="inputPassword3" placeholder="" name="videoUrl" value="${video.videoUrl }">
+				    </div>
+			  	</div>
+			  	
+			  	<div class="form-group">
+				    <label for="inputPassword3" class="col-sm-2 control-label">视频简介</label>
+				    <div class="col-sm-10">
+				      <textarea class="form-control" rows="3" name="videoDescr" >${video.videoDescr}</textarea>
+				    </div>
+			  	</div>
+			 	<input type="hidden" name="id" value="${video.id }"> 
+			 	<input type="submit" class="btn btn-primary" value="保存"/>&nbsp;&nbsp;&nbsp;&nbsp;
 			 	<a class="btn btn-default" href="javascript:history.go(-1)">返回列表</a>	
 		 	
 		 </div>
   	</div>
   	</form>
-  	
-  	
 	</body>
 </html>
